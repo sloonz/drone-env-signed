@@ -19,7 +19,7 @@ $ docker run -d \
   --env=DRONE_SECRET=bea26a2221fd8090ea38720fc445eca6 \
   --env=DRONE_PRIVATE_KEY="$DRONE_PRIVATE_KEY" \
   --restart=always \
-  --name=drone-env-merge
+  --name=drone-env-signed
 ```
 
 Update your runner configuration to include the plugin address and the shared secret.
