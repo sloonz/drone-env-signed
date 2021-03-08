@@ -1,6 +1,6 @@
 An environment variable plugin that sign repository and build information and export it a as JWS token.
 
-_Please note this project requires Drone server version 1.6 or higher._
+_Please note this project requires Drone server version 1.7 or higher._
 
 ## Usage
 

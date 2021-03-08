@@ -36,7 +36,7 @@ type buildPayload struct {
 	drone.Build
 }
 
-func (p *plugin) List(ctx context.Context, req *environ.Request) (map[string]string, error) {
+func (p *plugin) List(ctx context.Context, req *environ.Request) ([]*environ.Variable, error) {
 	now := jwt.NumericDate(time.Now())
 
 	repo := repoPayload{
@@ -61,9 +61,17 @@ func (p *plugin) List(ctx context.Context, req *environ.Request) (map[string]str
 		return nil, err
 	}
 
-	env := map[string]string{
-		"DRONE_SIGNED_REPO":  string(signedRepo),
-		"DRONE_SIGNED_BUILD": string(signedBuild),
+	env := []*environ.Variable{
+		{
+			Name: "DRONE_SIGNED_REPO",
+			Data: string(signedRepo),
+			Mask: false,
+		},
+		{
+			Name: "DRONE_SIGNED_BUILD",
+			Data: string(signedBuild),
+			Mask: false,
+		},
 	}
 
 	return env, nil
